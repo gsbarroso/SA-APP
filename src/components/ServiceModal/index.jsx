@@ -1,37 +1,30 @@
 import React from 'react';
 import { format } from 'date-fns';
-import Button from '../Button'; 
+import Button from '../Button';
 import * as S from './styles';
 
-const ServiceCard = ({ service, onReserveClick }) => {
-  const isPast = new Date() > service.dateTime;
-  const isFull = service.status === 'full';
-  const isDisabled = isPast || isFull;
+const ServiceModal = ({ service, onClose, onConfirm }) => {
+  if (!service) {
+    return null;
+  }
 
-  const buttonText = () => {
-    if (isPast) return 'Aula Finalizada';
-    if (isFull) return 'Turma Cheia';
-    return 'Reservar Aula';
-  };
-  
   return (
-    <S.CardWrapper $isDisabled={isDisabled}>
-      <S.CardHeader>
-        <S.Time>{format(service.dateTime, 'HH:mm')}</S.Time>
-        <S.Name>{service.name}</S.Name>
-      </S.CardHeader>
-
-      <S.CardActions>
-        <Button 
-          onClick={() => onReserveClick(service)} 
-          disabled={isDisabled}
-        >
-          {buttonText()}
-        </Button>
-        <S.InfoLink href="#">Ver informações</S.InfoLink>
-      </S.CardActions>
-    </S.CardWrapper>
+    <S.ModalOverlay onClick={onClose}>
+      <S.ModalContent onClick={(e) => e.stopPropagation()}>
+        <S.ModalHeader>Confirmar Reserva</S.ModalHeader>
+        <S.ServiceDetails>
+          <p><strong>Serviço:</strong> {service.name}</p>
+          <p><strong>Data:</strong> {format(service.dateTime, 'dd/MM/yyyy')}</p>
+          <p><strong>Horário:</strong> {format(service.dateTime, 'HH:mm')}</p>
+          <p><strong>Instrutor:</strong> {service.instructor}</p>
+        </S.ServiceDetails>
+        <S.ModalActions>
+          <Button onClick={onClose} >Cancelar</Button>
+          <Button onClick={() => onConfirm(service)}>Confirmar</Button>
+        </S.ModalActions>
+      </S.ModalContent>
+    </S.ModalOverlay>
   );
 };
 
-export default ServiceCard;
+export default ServiceModal;

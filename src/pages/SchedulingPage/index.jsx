@@ -18,7 +18,6 @@ const SchedulingPage = () => {
 
   const filteredServices = useMemo(() => {
     if (!selectedDate) return [];
-    // Filtro seguro: garante que não há serviços nulos na lista
     return servicesData
       .filter(service => service && isSameDay(service.dateTime, selectedDate))
       .sort((a, b) => a.dateTime - b.dateTime);
@@ -27,20 +26,28 @@ const SchedulingPage = () => {
   const handleDayClick = (day) => setSelectedDate(day);
   const handleReserveClick = (service) => setSelectedService(service);
   const handleCloseModal = () => setSelectedService(null);
+  
+  const handleConfirmReservation = (service) => {
+    console.log("Reserva confirmada para:", service);
+    // Aqui você pode adicionar a lógica para atualizar o status do serviço, etc.
+    handleCloseModal();
+  };
+
   const handleNextWeek = () => setCurrentDate(addDays(currentDate, 7));
   const handlePrevWeek = () => setCurrentDate(subDays(currentDate, 7));
 
   return (
     <S.PageContainer>
       <S.TopHeaderWrapper>
-        <S.Logo>IDEIA JR</S.Logo>
+        <S.Logo>SISTEMA DE AGENDAMENTO</S.Logo>
         <S.UserProfile>
-          <span>Olá, Sabrina!</span>
-          <img src="https://i.pravatar.cc/40" alt="Avatar" />
+          <span>Olá, Gustavo!</span>
+          <img src="https://i.pravatar.cc/10" alt="Avatar" />
         </S.UserProfile>
       </S.TopHeaderWrapper>
 
       <S.MainContent>
+        {/* O restante do seu JSX permanece o mesmo aqui... */}
         <S.HeaderNavWrapper>
           <S.Navigation>
             <a href="#" className="active"><span>&#9776;</span> Agendar Serviço</a>
@@ -99,13 +106,14 @@ const SchedulingPage = () => {
       
       <S.FooterWrapper>
         <S.Logo>IDEIA JR</S.Logo>
-        <S.CpeLogo>LOGO CPE</S.CpeLogo>
-        <span>Produzido por CPE e Ideia Jr</span>
+        <S.CpeLogo>CPEJR</S.CpeLogo>
+        <span>Produzido por CPEjr e Ideia Jr</span>
       </S.FooterWrapper>
       
       <ServiceModal 
         service={selectedService} 
-        onClose={handleCloseModal} 
+        onClose={handleCloseModal}
+        onConfirm={handleConfirmReservation}
       />
     </S.PageContainer>
   );

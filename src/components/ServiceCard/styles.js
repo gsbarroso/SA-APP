@@ -71,3 +71,8 @@ export const InfoLink = styled.a`
     text-decoration: underline;
   }
 `;
+export const CardHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
