@@ -1,12 +1,88 @@
-# React + Vite
+# 🚀 Projeto de Agendamento de Serviços - Frontend (Ideia Jr)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Status](https://img.shields.io/badge/status-em--desenvolvimento-yellow)
+![React](https://img.shields.io/badge/React-18.x-blue?logo=react)
+![Vite](https://img.shields.io/badge/Vite-5.x-purple?logo=vite)
+![Styled Components](https://img.shields.io/badge/styled--components-^6.x-pink?logo=styled-components)
 
-Currently, two official plugins are available:
+Este é o repositório do frontend para a plataforma de agendamento de serviços. O projeto foi desenvolvido com foco em uma arquitetura de componentes moderna e reutilizável, replicando um design do Figma e utilizando as ferramentas mais atuais do ecossistema React.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Funcionalidades
 
-## Expanding the ESLint configuration
+O projeto implementa as seguintes funcionalidades:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+-   **Visualização de Calendário Semanal:** Navegação simples entre os dias da semana.
+-   **Listagem de Serviços:** Exibição dinâmica dos serviços (aulas) disponíveis para cada dia.
+-   **Cards Interativos:** Componentes visuais para cada serviço, mostrando horário, nome e status (disponível, cheio, finalizado).
+-   **Modal de Confirmação:** Janela de confirmação para o usuário reservar um horário.
+-   **Estilização por Componente:** Adoção do padrão de `styles.js` para cada componente, mantendo o código limpo e encapsulado.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+Este projeto foi construído com as seguintes tecnologias:
+
+-   **[React.js](https://reactjs.org/):** Biblioteca para a construção da interface de usuário.
+-   **[Vite](https://vitejs.dev/):** Ferramenta de build moderna e extremamente rápida para o desenvolvimento frontend.
+-   **[Styled-components](https://styled-components.com/):** Biblioteca para estilização CSS-in-JS, permitindo a criação de componentes com seus próprios estilos.
+-   **JavaScript (ES6+):** Linguagem de programação base.
+-   **NPM:** Gerenciador de pacotes.
+-   **Git & GitHub:** Para versionamento e hospedagem do código.
+
+---
+
+## ⚙️ Como Rodar o Projeto Localmente
+
+Para executar este projeto na sua máquina, siga os passos abaixo.
+
+### Pré-requisitos
+
+-   [Node.js](https://nodejs.org/en/) (versão 18.x ou superior)
+-   [Git](https://git-scm.com/)
+
+### Passos
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git](https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git)
+    ```
+
+2.  **Navegue até a pasta do projeto:**
+    ```bash
+    cd nome-do-repositorio
+    ```
+
+3.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+
+4.  **Inicie o servidor de desenvolvimento:**
+    ```bash
+    npm run dev
+    ```
+
+5.  Abra seu navegador e acesse `http://localhost:5173` para ver a aplicação rodando.
+
+---
+
+## 📂 Estrutura de Pastas
+
+O projeto segue uma arquitetura de pastas organizada para facilitar a manutenção e escalabilidade:
+
+```
+src/
+├── components/   # Componentes reutilizáveis (Button, ServiceCard, etc.)
+├── data/         # Dados mockados para simular a API
+├── pages/        # Estrutura das páginas principais (SchedulingPage)
+└── styles/       # Estilos globais da aplicação
+```
+
+---
+
+## ✒️ Autor
+
+Desenvolvido por **[Seu Nome Aqui]**.
+
+*Este README foi gerado com a ajuda do Gemini.*
