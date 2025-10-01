@@ -1,9 +1,16 @@
 import React from 'react';
-import Button from '../Button'; // Importamos o componente Button
+import { format } from 'date-fns';
+import Button from '../Button';
 import * as S from './styles';
 
 const ServiceCard = ({ service, onReserveClick }) => {
-  const isPast = service.status === 'past';
+  // VERIFICAÇÃO DE SEGURANÇA: Se o 'service' for nulo, não renderiza nada.
+  // Isto resolve o erro "can't access property 'dateTime'".
+  if (!service) {
+    return null;
+  }
+
+  const isPast = new Date() > service.dateTime;
   const isFull = service.status === 'full';
   const isDisabled = isPast || isFull;
 
@@ -14,17 +21,11 @@ const ServiceCard = ({ service, onReserveClick }) => {
   };
   
   return (
-    // Passamos a prop $isDisabled (com $) para o styled-component
     <S.CardWrapper $isDisabled={isDisabled}>
-      <S.Time>{service.time}</S.Time>
-      <S.Name>{service.name}</S.Name>
-      
-      {service.instructor && (
-        <S.InstructorInfo>
-          <span>{service.instructor}</span>
-        </S.InstructorInfo>
-      )}
-      {service.duration && <span>{service.duration} min</span>}
+      <S.CardHeader>
+        <S.Time>{format(service.dateTime, 'HH:mm')}</S.Time>
+        <S.Name>{service.name}</S.Name>
+      </S.CardHeader>
 
       <S.CardActions>
         <Button 

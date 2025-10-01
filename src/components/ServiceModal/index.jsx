@@ -1,39 +1,37 @@
 import React from 'react';
-import Button from '../Button';
+import { format } from 'date-fns';
+import Button from '../Button'; 
 import * as S from './styles';
 
-const ServiceModal = ({ service, onClose }) => {
-  if (!service) {
-    return null;
-  }
+const ServiceCard = ({ service, onReserveClick }) => {
+  const isPast = new Date() > service.dateTime;
+  const isFull = service.status === 'full';
+  const isDisabled = isPast || isFull;
 
-  const handleContentClick = (e) => e.stopPropagation();
-
+  const buttonText = () => {
+    if (isPast) return 'Aula Finalizada';
+    if (isFull) return 'Turma Cheia';
+    return 'Reservar Aula';
+  };
+  
   return (
-    <S.Overlay onClick={onClose}>
-      <S.Content onClick={handleContentClick}>
-        <S.CloseButton onClick={onClose}>&times;</S.CloseButton>
-        <h2>Confirmar Reserva</h2>
-        <p>Você está prestes a reservar a seguinte aula:</p>
-        
-        <S.Details>
-          <strong>Aula:</strong> {service.name} <br />
-          <strong>Horário:</strong> {service.time} <br />
-          {service.instructor && <><strong>Instrutor(a):</strong> {service.instructor} <br /></>}
-          <strong>Duração:</strong> {service.duration} minutos
-        </S.Details>
+    <S.CardWrapper $isDisabled={isDisabled}>
+      <S.CardHeader>
+        <S.Time>{format(service.dateTime, 'HH:mm')}</S.Time>
+        <S.Name>{service.name}</S.Name>
+      </S.CardHeader>
 
-        <S.Actions>
-          <Button onClick={() => { 
-            alert(`Aula "${service.name}" reservada com sucesso!`);
-            onClose();
-          }}>
-            Confirmar
-          </Button>
-        </S.Actions>
-      </S.Content>
-    </S.Overlay>
+      <S.CardActions>
+        <Button 
+          onClick={() => onReserveClick(service)} 
+          disabled={isDisabled}
+        >
+          {buttonText()}
+        </Button>
+        <S.InfoLink href="#">Ver informações</S.InfoLink>
+      </S.CardActions>
+    </S.CardWrapper>
   );
 };
 
-export default ServiceModal;
+export default ServiceCard;

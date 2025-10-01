@@ -1,44 +1,60 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Overlay = styled.div`
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-`;
-
-export const Content = styled.div`
-  background: white;
-  padding: 30px;
+export const CardWrapper = styled.div`
+  background-color: #fff;
+  border: 1px solid #eee;
   border-radius: 12px;
-  width: 90%;
-  max-width: 500px;
-  position: relative;
-`;
-
-export const CloseButton = styled.button`
-  position: absolute;
-  top: 10px; right: 15px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #888;
-`;
-
-export const Details = styled.div`
-  margin: 20px 0;
-  padding: 15px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  line-height: 1.6;
-`;
-
-export const Actions = styled.div`
+  padding: 16px;
   display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 180px;
+
+  ${(props) => props.$isDisabled && css`
+    background-color: #f9f9f9;
+    color: #aaa;
+    
+    h3 {
+      color: #ccc;
+    }
+  `}
+`;
+
+export const CardHeader = styled.div`
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 12px;
+`;
+
+export const Time = styled.span`
+  font-weight: 700;
+  font-size: 16px;
+  color: #333;
+`;
+
+export const Name = styled.h3`
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+`;
+
+export const CardActions = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const InfoLink = styled.a`
+  color: #8A2BE2;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 700;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;

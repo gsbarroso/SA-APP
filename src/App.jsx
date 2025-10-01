@@ -1,6 +1,6 @@
 import React from 'react';
-import SchedulingPage from './pages/SchedulingPage';
 import { GlobalStyle } from './styles/global';
+import SchedulingPage from './pages/SchedulingPage';
 
 function App() {
   return (
